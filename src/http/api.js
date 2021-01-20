@@ -1,5 +1,7 @@
 import * as login from './moudules/login'
-export default {
-  login
+import * as article from './moudules/article'
 
+export default {
+  login,
+  article
 }
