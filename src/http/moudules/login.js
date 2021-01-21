@@ -6,3 +6,18 @@ export const doLogin = (data) => {
     data
   })
 }
+export const doRegister = (data) => {
+  return axios({
+    url: '/user/doRegister',
+    method: 'post',
+    data
+  })
+}
+
+export const find = (data) => {
+  return axios({
+    url: '/user/find',
+    method: 'post',
+    data
+  })
+}

@@ -8,7 +8,7 @@
     </el-button-group>
 
     <el-table
-      :data="tableData"
+      :data="tableData.slice((currpage - 1) * pagesize, currpage * pagesize)"
       style="width: 100%" @selection-change="handleSelectionChange">
       <el-table-column
         type="selection"
@@ -38,7 +38,15 @@
         </template>
       </el-table-column>
     </el-table>
-
+    <el-pagination background
+                   layout="prev, pager, next, sizes, total, jumper"
+                   :page-sizes="[5, 10, 15, 20]"
+    :page-size="pagesize"
+    :total="tableData.length"
+    @current-change="handleCurrentChange"
+    @size-change="handleSizeChange"
+    >
+    </el-pagination>
     <el-dialog
       title="新增"
       :visible.sync="dialogVisible"
@@ -85,6 +93,7 @@
     <el-button type="primary" @click="doEdit()">确 定</el-button>
   </span>
     </el-dialog>
+
   </div>
 </template>
 <script>
@@ -96,6 +105,9 @@ export default {
       tableData: [],
       dialogVisible: false,
       dialogVisibleEdit:false,
+      pagesize: 5,
+      currpage: 1,
+
       article: {
         title: '',
         content: '',
@@ -135,6 +147,12 @@ export default {
     },
     add() {
       this.dialogVisible = true
+    },
+    handleCurrentChange(cpage) {
+      this.currpage = cpage;
+    },
+    handleSizeChange(psize) {
+      this.pagesize = psize;
     },
     dellete() {
       this.$api.article.dellete(this.sellect).then((res) => {
