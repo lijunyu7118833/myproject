@@ -11,7 +11,7 @@
       <el-table-column
         prop="password"
         label="密码"
-        width="180">
+        width="480">
       </el-table-column>
 
 

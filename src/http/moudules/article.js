@@ -28,3 +28,10 @@ export const dellete = (data) => {
   })
 }
 
+export const like = (data) => {
+  return axios({
+    url: '/article/like',
+    method: 'post',
+    data
+  })
+}

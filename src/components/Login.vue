@@ -119,6 +119,8 @@ export default {
               });
               this.loading = false
               sessionStorage.setItem("token",res.data.token)
+              sessionStorage.setItem("user",JSON.stringify(res.data.data))
+
               this.$router.push('/')
 
 
